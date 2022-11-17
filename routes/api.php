@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use \App\Http\Controllers\ServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +17,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/user', [UserController::class, 'user'])->middleware('auth:api');
+
+Route::group(['middleware' => ['auth', 'api']], function () {
+    Route::get('/user', [UserController::class, 'user']);
+
+    Route::resource('servers', ServerController::class);
+
+});
