@@ -31,6 +31,33 @@ class ServerController extends Controller
     public function store(Request $request)
     {
         //
+        $ipv4 = $request->get('ipv4');
+        $domain_name = $request->get('domainName');
+
+        $server = new Server(['ipv4' => $ipv4, 'domain_name' => $domain_name]);
+
+        $resource = new ServerResource($server);
+
+        $server_exists = Server::where('ipv4', $ipv4)->first();
+
+        if ($server_exists){
+            return $resource->additional([
+                'status' => '400',
+                'message' => 'IPV4 address already exists, type another one'
+            ]);
+        }
+
+        if ($server->save()){
+            return $resource->additional([
+                'status' => '200',
+            ]);
+        }
+
+        return $resource->additional([
+            'status' => '401',
+            'message' => 'Error while saving server'
+        ]);
+
     }
 
     /**
