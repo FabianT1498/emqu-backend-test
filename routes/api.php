@@ -18,9 +18,8 @@ use \App\Http\Controllers\ServerController;
 */
 
 
-Route::group(['middleware' => ['auth', 'api']], function () {
+Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', [UserController::class, 'user']);
 
     Route::resource('servers', ServerController::class);
-
 });

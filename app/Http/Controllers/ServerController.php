@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
+use App\Http\Resources\ServerResource;
+use App\Http\Resources\ServerCollection;
+
+
 class ServerController extends Controller
 {
     /**
@@ -15,7 +19,7 @@ class ServerController extends Controller
     public function index()
     {
         //
-        return response()->json(['data' => 'Hola mundo']);
+        return new ServerCollection(Server::all());
     }
 
     /**
