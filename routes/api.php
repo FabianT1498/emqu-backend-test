@@ -22,4 +22,6 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/user', [UserController::class, 'user']);
 
     Route::resource('servers', ServerController::class);
+
+    Route::post('servers/test', [ServerController::class, 'test']);
 });

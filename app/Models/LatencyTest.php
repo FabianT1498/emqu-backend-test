@@ -20,7 +20,7 @@ class LatencyTest extends Model
     {
         parent::__construct($attributes);
 
-        $this->status = key_exists('status', $attributes) ? $attributes['status'] : 'FAILURE';
+        $this->status = key_exists('status', $attributes) ? $attributes['status'] : config('constants.PING_FAILURE');
         $this->latency =  key_exists('latency', $attributes) ? $attributes['latency'] : '';
         $this->server_ipv4 = key_exists('server_ipv4', $attributes) ? $attributes['server_ipv4'] : '';
         $this->user_id =  key_exists('user_id', $attributes) ? $attributes['user_id'] : '';

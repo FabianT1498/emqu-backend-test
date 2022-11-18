@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('latency_tests', function (Blueprint $table) {
             $table->id();
             $table->enum('status', ['FAILURE', 'SUCCESS']);
-            $table->unsignedInteger('latency');
+            $table->integer('latency');
             $table->timestamps();
             $table->string('server_ipv4');
             $table->unsignedBigInteger('user_id');
